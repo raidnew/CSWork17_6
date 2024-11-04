@@ -1,0 +1,39 @@
+﻿<Window x:Class="Work17_6.Views.WindowSummary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Work17_6.Views" 
+        xmlns:vm="clr-namespace:Work17_6.ViewModels" 
+        mc:Ignorable="d"
+        Title="WindowSummary" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:WindowSummaryViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="ProductsInfo" AutoGenerateColumns="False" Grid.Column="0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedItem}" CurrentCellChanged="DataGrid_CellChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="50" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200" />
+                <DataGridTextColumn Header="Product ID" Binding="{Binding ProductId}" Width="70"/>
+                <DataGridTextColumn Header="Owner email" Binding="{Binding Email}" Width="200" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Command="{Binding ClickAddProduct}">Add</Button>
+            <Button Grid.Row="1" Command="{Binding ClickDelete}">Delete</Button>
+            <Button Grid.Row="3" Command="{Binding ClickViewCustomers}">View Customers</Button>
+        </Grid>
+    </Grid>
+</Window>
